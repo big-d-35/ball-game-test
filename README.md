@@ -1,0 +1,1 @@
+**Open Assets/Scenes/SampleScene**
