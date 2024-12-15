@@ -1,47 +1,84 @@
 using System;
 using UnityEngine;
-using System.Collections;
-using UnityEngine.SceneManagement;
 
 public class Balistika : MonoBehaviour
 {
-    public KeyCode Space;
-    Rigidbody rb;
-    public float y;
-    public float x;
-    public bool zemla;
+	[Serializable] public class InitTrajectory
+	{
+		public float Y;
+		public float X;
+	}
+	[SerializeField] private InitTrajectory initTrajectory;
 
-    void Start()
-    {
-        rb = GetComponent<Rigidbody>();
-        
-    }
-    IEnumerator LeafDestruction()
-    {
-        yield return new WaitForSeconds(5);
-        SceneManager.LoadScene(0);
-    }
+	[Serializable] public class ChangeTrajectory
+	{
+		public float SpeedChangeTrajectoryX;
+		public float SpeedChangeTrajectoryY;
+	}
+	[SerializeField] private ChangeTrajectory changeTrajectory;
 
+	[Serializable] public class LimitTrajectory
+	{
+		public float LimitTop;
+		public float LimitBottom;
+	}
+	[SerializeField] private LimitTrajectory limitTrajectory;
 
-    void Update()
-    {
-        if (zemla == true && Input.GetKeyUp(KeyCode.Space))
-        {
-            rb.AddForce(new Vector3(0, 2*y, 2*x), ForceMode.Force);
-            zemla = false;
-            this.GetComponent<Rigidbody>().useGravity = true;
+	[SerializeField] private KeyCode keyCodeBalistika;
+	private Rigidbody rigidbody;
 
-        }
-          
+	[SerializeField] private TrajectoryRenderer trajectoryRenderer;
+	[SerializeField] private bool mayPush;
+	public bool MayPush 
+	{
+		get { return mayPush; } 
+		set { mayPush = value; }
+	}
 
-    }
-    
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag != "leaf1")
-        {
-            StartCoroutine(LeafDestruction());
-        }
-    }
+	private float valueHolding;
+	private bool mayDecrease = false;
 
+	void Start()
+	{
+		rigidbody = GetComponent<Rigidbody>();
+		valueHolding = initTrajectory.Y;
+		trajectoryRenderer.gameObject.SetActive(false);
+		
+	}
+
+	void Update()
+	{
+		if (!mayPush) return;
+		
+		if (Input.GetKey(keyCodeBalistika))
+		{
+			if (valueHolding < limitTrajectory.LimitTop && !mayDecrease)
+			{
+				valueHolding += Time.deltaTime * changeTrajectory.SpeedChangeTrajectoryY;
+				initTrajectory.X -= Time.deltaTime * changeTrajectory.SpeedChangeTrajectoryX;
+				initTrajectory.Y = valueHolding;
+			}
+			else mayDecrease = true;
+
+			if (mayDecrease)
+			{
+				if (valueHolding > limitTrajectory.LimitBottom)
+				{
+					valueHolding -= Time.deltaTime * changeTrajectory.SpeedChangeTrajectoryY;
+					initTrajectory.X += Time.deltaTime * changeTrajectory.SpeedChangeTrajectoryX;
+					initTrajectory.Y = valueHolding;
+				}
+				else mayDecrease = false;
+			}
+			trajectoryRenderer.gameObject.SetActive(true);
+			Vector3 speed = new Vector3(0, initTrajectory.Y, initTrajectory.X);
+			trajectoryRenderer.ShowTrajectory(transform.position, speed);
+		}
+		if (Input.GetKeyUp(keyCodeBalistika))
+		{
+			rigidbody.AddForce(new Vector3(0, initTrajectory.Y, initTrajectory.X), ForceMode.Impulse);
+			rigidbody.useGravity = true;
+			trajectoryRenderer.gameObject.SetActive(false);
+		}
+	}
 }
