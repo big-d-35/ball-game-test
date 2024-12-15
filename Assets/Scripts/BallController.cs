@@ -27,6 +27,10 @@ public class BallController : MonoBehaviour
         InputData._positing += Aiming;
     }
 
+
+    /// <summary>
+    /// Момент нажатия стика
+    /// </summary>
     private void AimingStart()
     {
         transform.LookAt(Basket);
@@ -38,6 +42,10 @@ public class BallController : MonoBehaviour
         _force = _minForce;
     }
 
+
+    /// <summary>
+    /// Момент отпускания стика
+    /// </summary>
     private void DisableAimin()
     {
         Arrow.transform.localScale = startForceScale;
@@ -49,6 +57,10 @@ public class BallController : MonoBehaviour
         timer = 0;
     }
 
+    /// <summary>
+    /// Прицеливание
+    /// </summary>
+    /// <param name="delta"></param>
     private void Aiming(Vector2 delta)
     {
         Arrow.transform.localEulerAngles = new Vector3(startLocalDirection.x + delta.y * -30, startLocalDirection.y + delta.x * 30, startLocalDirection.z);
