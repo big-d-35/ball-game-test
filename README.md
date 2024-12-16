@@ -16,4 +16,4 @@
 Модели баскетбольной площадки и баскетбольного щита созданы в Blender с реальными размерами по стандартам ФИБА.
 
 Ниже представлен скрин прототипа игры
-![Doynikov](https://disk.yandex.ru/i/iDyf2JTg9EKtVg)
+![Doynikov](https://imgur.com/a/4Naw9Gb)
