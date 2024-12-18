@@ -18,7 +18,7 @@ namespace CodeBase.Infrastructure.BallLogic
 
             Vector3 initialVelocity = CalculateThrowVelocity(transform.position, target.position, timeToTarget);
             _rigidbody.isKinematic = false;
-            _rigidbody.velocity = initialVelocity;
+            _rigidbody.linearVelocity = initialVelocity;
         }
 
         private Vector3 CalculateThrowVelocity(Vector3 startPosition, Vector3 targetPosition, float time)
