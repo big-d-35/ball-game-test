@@ -3,7 +3,27 @@ guid: c4b4ca4af7a5ac64ab205a7f4de0bb62
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Board
+    second: {fileID: 2100000, guid: 1a2dd6878837506409cbf31c03653660, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Court
+    second: {fileID: 2100000, guid: 4d1eee56b58e1c94ea58401c837d6ac0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Frame Colour
+    second: {fileID: 2100000, guid: beb781f995f8fd94aa931616fd7af09b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Stand
+    second: {fileID: 2100000, guid: 9b6b66ce836b20547b7aa08c62a044de, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
