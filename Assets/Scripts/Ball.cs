@@ -26,9 +26,12 @@ public class Ball : MonoBehaviour
     }
     public void Throw()
     {
-        throwSound.Play();
-        rb.isKinematic = false;
-        rb.AddForce(transform.up * slider.value, ForceMode.Impulse);
+        if(rb.isKinematic == true)
+        {
+            throwSound.Play();
+            rb.isKinematic = false;
+            rb.AddForce(transform.up * slider.value, ForceMode.Impulse);
+        }
     }
     private void OnTriggerEnter(Collider other)
     {
