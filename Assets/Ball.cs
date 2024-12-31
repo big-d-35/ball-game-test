@@ -28,7 +28,11 @@ public class BasketballController : MonoBehaviour
     private Material arrowMaterial;
     private float currentForce;
     private Vector3 shootDirection;
+<<<<<<< Updated upstream
     private Renderer[] childRenderers; // Массив для хранения всех рендереров дочерних объектов
+=======
+    private Renderer[] childRenderers; // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+>>>>>>> Stashed changes
 
     void Start()
     {
@@ -37,6 +41,7 @@ public class BasketballController : MonoBehaviour
 
         mainCamera = Camera.main;
 
+<<<<<<< Updated upstream
         ballRigidbody.drag = 0.5f;
         ballRigidbody.angularDrag = 0.5f;
 
@@ -45,6 +50,16 @@ public class BasketballController : MonoBehaviour
             // Получаем все рендереры, включая дочерние
             childRenderers = arrowObject.GetComponentsInChildren<Renderer>();
             // Основной материал берём от первого рендерера
+=======
+        ballRigidbody.linearDamping = 0.5f;
+        ballRigidbody.angularDamping = 0.5f;
+
+        if (arrowObject != null)
+        {
+            // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+            childRenderers = arrowObject.GetComponentsInChildren<Renderer>();
+            // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+>>>>>>> Stashed changes
             arrowMaterial = childRenderers[0].material;
         }
     }
@@ -134,14 +149,22 @@ public class BasketballController : MonoBehaviour
         arrowObject.SetActive(true);
         arrowObject.transform.position = aimStartPoint + new Vector3(0, 0, 0f);
 
+<<<<<<< Updated upstream
         // Устанавливаем начальный масштаб (только по Z)
+=======
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ Z)
+>>>>>>> Stashed changes
         Vector3 initialScale = arrowObject.transform.localScale;
         initialScale.x = minArrowScale;
         initialScale.y = minArrowScale;
         initialScale.z = minArrowScale;
         arrowObject.transform.localScale = initialScale;
 
+<<<<<<< Updated upstream
         // Устанавливаем начальный цвет для всех дочерних объектов
+=======
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+>>>>>>> Stashed changes
         UpdateArrowColor(weakShotColor);
     }
 
@@ -157,14 +180,22 @@ public class BasketballController : MonoBehaviour
         float dragDistance = Vector3.Distance(Input.mousePosition, chargeStartPoint);
         currentForce = Mathf.Clamp01(dragDistance / 300f);
 
+<<<<<<< Updated upstream
         // Изменяем размер стрелки только по оси Z
+=======
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ Z
+>>>>>>> Stashed changes
         Vector3 currentArrowScale = arrowObject.transform.localScale;
         currentArrowScale.x = minArrowScale;
         currentArrowScale.y = minArrowScale;
         currentArrowScale.z = Mathf.Lerp(minArrowScale, maxArrowScale, currentForce);
         arrowObject.transform.localScale = currentArrowScale;
 
+<<<<<<< Updated upstream
         // Определяем текущий цвет на основе силы
+=======
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
+>>>>>>> Stashed changes
         Color currentColor;
         if (currentForce < 0.3f)
         {
@@ -179,11 +210,19 @@ public class BasketballController : MonoBehaviour
             currentColor = strongShotColor;
         }
 
+<<<<<<< Updated upstream
         // Обновляем цвет всех дочерних объектов
         UpdateArrowColor(currentColor);
     }
 
     // Новый метод для обновления цвета всех дочерних объектов
+=======
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+        UpdateArrowColor(currentColor);
+    }
+
+    // пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+>>>>>>> Stashed changes
     void UpdateArrowColor(Color newColor)
     {
         if (childRenderers != null)
@@ -203,18 +242,32 @@ public class BasketballController : MonoBehaviour
 
         float forcePower = currentForce * maxForce;
 
+<<<<<<< Updated upstream
         Debug.Log($"Направление броска: {finalDirection}");
         Debug.Log($"Сила броска: {forcePower:F2} Н");
         Debug.Log($"Процент от максимальной силы: {(currentForce * 100):F1}%");
 
         ballRigidbody.isKinematic = false;
         ballRigidbody.velocity = Vector3.zero;
+=======
+        Debug.Log($"пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ: {finalDirection}");
+        Debug.Log($"пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ: {forcePower:F2} пїЅ");
+        Debug.Log($"пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ: {(currentForce * 100):F1}%");
+
+        ballRigidbody.isKinematic = false;
+        ballRigidbody.linearVelocity = Vector3.zero;
+>>>>>>> Stashed changes
 
         ballRigidbody.AddForce(finalDirection * forcePower, ForceMode.Impulse);
         ballRigidbody.AddTorque(Random.insideUnitSphere * forcePower * 0.2f, ForceMode.Impulse);
 
+<<<<<<< Updated upstream
         Debug.Log($"Скорость мяча: {ballRigidbody.velocity.magnitude:F2} м/с");
         Debug.Log($"Угловая скорость: {ballRigidbody.angularVelocity.magnitude:F2} рад/с");
+=======
+        Debug.Log($"пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ: {ballRigidbody.linearVelocity.magnitude:F2} пїЅ/пїЅ");
+        Debug.Log($"пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ: {ballRigidbody.angularVelocity.magnitude:F2} пїЅпїЅпїЅ/пїЅ");
+>>>>>>> Stashed changes
         Debug.Log("------------------------");
 
         currentState = ShootState.Idle;

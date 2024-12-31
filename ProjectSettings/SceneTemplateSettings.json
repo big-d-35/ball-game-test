@@ -63,6 +63,14 @@
         },
         {
             "userAdded": false,
+<<<<<<< Updated upstream
+=======
+            "type": "UnityEngine.PhysicsMaterial",
+            "defaultInstantiationMode": 0
+        },
+        {
+            "userAdded": false,
+>>>>>>> Stashed changes
             "type": "UnityEngine.PhysicsMaterial2D",
             "defaultInstantiationMode": 0
         },
